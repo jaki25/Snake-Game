@@ -4,6 +4,8 @@ from turtle import Screen
 from snake import Snake
 from food import Food
 from ScoreBoard import Score
+from bomb import Bomb
+from bomb import segments
 screen=Screen()
 
 screen.setup(600,600)
@@ -13,6 +15,7 @@ screen.tracer(0)
 brojac=0
 snake=Snake()
 food=Food()
+bomb=Bomb()
 
 #text score
 score=Score()
@@ -34,22 +37,34 @@ while game_is_on:
     if snake.head.distance(food)<15:
         brojac+=1
         snake.extend()
-        score.incriseScore(brojac)
+        score.incriseScore_decriseScore(brojac)
         score.writeScore()
-
+        for i in range(0,brojac):
+            bomb=Bomb()
         food.refresh()
+    for bomb in segments:
+
+        if snake.head.distance(bomb)<15:
+
+            if brojac<1:
+                game_is_on=False
+                score.game_over()
+            else:
+                snake.cutSnake()
+                brojac -= 1
+                score.incriseScore_decriseScore(brojac)
+                score.writeScore()
+
 #detect collision with the wall
     if snake.head.xcor()>280 or snake.head.xcor()<-280 or snake.head.ycor()>280 or snake.head.ycor()<-280:
         game_is_on=False
         score.game_over()
 # detect collision with snake tail
-    for seg in snake.segments:
+    for seg in snake.segments[1:]:
 
-        if seg== snake.head:
-            pass
-        elif snake.head.distance(seg)<10:
+        if snake.head.distance(seg)<10:
 
-            game_is_on=False
-            score.game_over()
+                game_is_on=False
+                score.game_over()
 
 screen.exitonclick()

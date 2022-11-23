@@ -30,6 +30,11 @@ class Snake():
 
     def extend(self):   #extend snake tail
         self.add_Seg(self.segments[-1].position())
+        self.segments[-1].color("green")
+
+    def cutSnake(self):
+        self.segments[-1].color("black")
+        self.segments.pop()
 
 #move the snake
     def move(self):

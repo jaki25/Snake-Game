@@ -23,5 +23,5 @@ class Score(Turtle):
         self.write(f"Score is : {self.number}",align="center", font=("Ariel",24,"normal"))
 
 #incrising score
-    def incriseScore(self,num):
+    def incriseScore_decriseScore(self,num):
         self.number=num
