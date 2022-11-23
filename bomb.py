@@ -14,6 +14,10 @@ class Bomb(Turtle):
         segments.append(self)
 
 
+    def clearBomb(self):
+
+
+        self.hideturtle()
 
     def refresh(self):
         x=random.randint(-280,280)

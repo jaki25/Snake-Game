@@ -14,6 +14,6 @@ class Food(Turtle):
 
 #recreations of food on another address
     def refresh(self):
-        x=random.randint(-280,280)
-        y = random.randint(-280, 280)
+        x=random.randint(-270,270)
+        y = random.randint(-270, 270)
         self.goto(x,y)

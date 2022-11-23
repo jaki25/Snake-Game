@@ -36,6 +36,7 @@ while game_is_on:
     #detect collision with food
     if snake.head.distance(food)<15:
         brojac+=1
+
         snake.extend()
         score.incriseScore_decriseScore(brojac)
         score.writeScore()
@@ -54,9 +55,15 @@ while game_is_on:
                 brojac -= 1
                 score.incriseScore_decriseScore(brojac)
                 score.writeScore()
+    if brojac%5==0:
 
-#detect collision with the wall
-    if snake.head.xcor()>280 or snake.head.xcor()<-280 or snake.head.ycor()>280 or snake.head.ycor()<-280:
+        for i in segments[1:]:
+            i.clearBomb()
+        for i in range(1,len(segments)-1):
+            segments.pop()
+
+    #detect collision with the wall
+    if snake.head.xcor()>285 or snake.head.xcor()<-285 or snake.head.ycor()>285 or snake.head.ycor()<-285:
         game_is_on=False
         score.game_over()
 # detect collision with snake tail
